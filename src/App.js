@@ -14,36 +14,37 @@ class App extends Component {
     this.handleCompleted = this.handleCompleted.bind(this);
   }
   // method to handle completed tasks 
-  handleCompleted(id) {
-    // map returns new array with out mutating existing array
-    const todo_items = this.state.todos.map((item) => {
-      if (item.id === id) {
-        return Object.assign({}, item, {
-          completed: !item.completed
-        });
-      } else {
-        return item;
-      }
-    });
-    // new updated todo items 
-    this.setState({
-      todos: todo_items
-    });
-  }
+   handleCompleted(id) {
+      //map returns new array with out mutating existing array
+     const todo_items = this.state.todos.map((item) => {
+       if (item.id === id) {
+         return Object.assign({}, item, {
+           completed: !item.completed
+         });
+       } else {
+         return item;
+       }
+     });
+     // new updated todo items 
+     this.setState({
+       todos: todo_items
+     });
+   }
 
   // adding new tasks 
   addItems(id, text, completed) {
-    const submittedTask = { id: id, text: text, completed: completed };
-    this.setState({ todos: [...this.state.todos, submittedTask] });
-  }
+      const submittedTask = { id: id, text: text, completed: completed };
+      this.setState({ todos: [...this.state.todos, submittedTask] });
+      console.log(this.state.todos)
+   }
 
   render() {
   
-    const completedTasks = this.state.todos.filter((item) => item.completed)
-      .length;
-    const todoItems = this.state.todos.map((item) => (
-      <Todo key={item.id} handleCompleted={this.handleCompleted} item={item} />
-    ));
+     const completedTasks = this.state.todos.filter((item) => item.completed)
+       .length;
+      const todoItems = this.state.todos.map((item) => (
+        <Todo key={item.id} handleCompleted={this.handleCompleted} item={item} />
+     ));
     return (
       <div className="todo-list">
         <h4>
